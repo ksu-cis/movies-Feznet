@@ -9,10 +9,17 @@ namespace Movies.Pages
 {
     public class IndexModel : PageModel
     {
+        public MovieDatabase movieDB = new MovieDatabase();
+        public List<Movie> Movies;
 
         public void OnGet()
         {
+            Movies = movieDB.All;
+        }
 
+        public void OnPost(string search, List<string> rating)
+        {
+            Movies = movieDB.SearchAndFilter(search, rating);
         }
     }
 }
